@@ -3,8 +3,6 @@ description: "Install NPM Dependencies with cache"
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v3
-
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
@@ -26,7 +24,6 @@ runs:
       run: |
         echo ${{fromJson(steps.set_package.outputs.packageJson).dependencies}} >> hash.json 
         echo ${{fromJson(steps.set_package.outputs.packageJson).devDendencies}} >> hash.json
-        cat hash.json
     - name: Cache dependencies
       id: cache
       uses: actions/cache@v3
