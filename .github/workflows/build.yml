@@ -8,9 +8,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: ls .github
-      - run: ls .github/actions
-      - uses: ./.github/actions/install-dependencies
+      - uses: ./.github/workflows/actions/install-dependencies
       - run: npm test
       - run: npm run build
