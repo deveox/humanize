@@ -1,5 +1,20 @@
-import { IntPrefixes, FloatPrefixes, NumberFormatType, NumberPrefixes } from './index.d';
-// known SI prefixes
+export type NumberFormatType = 'word' | 'name' | 'symbol'
+export type IntSymbols = 'Y' | 'Z' | 'E' | 'P' | 'T' | 'G' | 'M' | 'k' | 'h' | 'da'
+export type FloatSymbols = 'd' | 'c' | 'm' | 'μ' | 'n' | 'p' | 'f' | 'a' | 'z' | 'y'
+export type NumberFormatOptions = {
+  exponent: number
+  name: string
+  word: string
+}
+
+export type IntPrefixes = {
+  [key in IntSymbols as string]: NumberFormatOptions
+}
+export type FloatPrefixes = {
+  [key in FloatSymbols as string]: NumberFormatOptions
+}
+export type NumberPrefixes = IntPrefixes | FloatPrefixes
+
 export const intPrefixes: IntPrefixes = {
   Y: { exponent: 24, word: 'septillion', name: 'yotta' },
   Z: { exponent: 21, word: 'sextillion', name: 'zetta' },

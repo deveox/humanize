@@ -1,6 +1,8 @@
-import { DateFormat } from './index.d';
+
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+export type DateFormat = 'period' | 'time' | 'time-period' | 'date' | 'date-period' | 'day' | 'min' | 'date-time'
+
 dayjs.extend(relativeTime)
 
 

@@ -1,5 +1,4 @@
-import { NumberFormatType } from './../src/index.d';
-import { floatPrefixes, formatInt, getString, intPrefixes, pluralize, toNumber, _formatInt } from '../src/numbers'
+import { floatPrefixes, formatInt, getString, intPrefixes, NumberFormatType, pluralize, toNumber, _formatInt } from '../src/numbers'
 
 describe('pluralize', () => {
   it('should return plural form if n !== 1', () => {
