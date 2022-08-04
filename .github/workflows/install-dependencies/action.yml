@@ -1,0 +1,44 @@
+name: "Install NPM Dependencies"
+description: "Install NPM Dependencies with cache"
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "18"
+    - name: Read Package.json
+      shell: bash
+      id: set_package
+      run: |
+        content=`cat ./package.json`
+        # the following lines are only required for multi line json
+        content="${content//'%'/'%25'}"
+        content="${content//$'\n'/'%0A'}"
+        content="${content//$'\r'/'%0D'}"
+        # end of optional handling for multi line json
+        echo "::set-output name=packageJson::$content"
+    - name: Create Hash File
+      shell: bash
+      id: set_dependencies_hash
+      run: |
+        echo ${{fromJson(steps.set_package.outputs.packageJson).dependencies}} >> hash.json 
+        echo ${{fromJson(steps.set_package.outputs.packageJson).devDendencies}} >> hash.json
+        cat hash.json
+    - name: Cache dependencies
+      id: cache
+      uses: actions/cache@v3
+      with:
+        path: ./node_modules
+        key: node-modules-${{ hashFiles('hash.json') }}
+
+    - if: steps.cache.outputs.cache-hit != 'true'
+      name: Install NPM dependencies
+      shell: bash
+      run: npm ci
+    - if: steps.cache.outputs.cache-hit != 'false'
+      name: Take dependencies from cache
+      shell: bash
+      run: echo "using cache"
