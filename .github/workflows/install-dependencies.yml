@@ -32,11 +32,16 @@ jobs:
           echo ${{fromJson(steps.set_package.outputs.packageJson).devDendencies}} >> hash.json
           cat hash.json
       - name: Cache dependencies
+        id: cache
         uses: actions/cache@v2
         with:
           path: ./node_modules
           key: node-modules-${{ hashFiles('hash.json') }}
 
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
+      - if: steps.cache.outputs.cache-hit != 'true'
+        name: Install NPM dependencies
         run: npm ci
+      - if: steps.cache.outputs.cache-hit != 'false'
+        name: Take dependencies from cache
+    
+        
