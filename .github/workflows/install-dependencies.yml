@@ -2,18 +2,38 @@ on:
   workflow_call:
  
 jobs:
-  install-dependencies:
-    name: Install Dependencies
+  lint:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: 18
-      - run: npm ci
-      - uses: actions/cache@v2
-        id: restore-dependencies
+          node-version: '18'
+          
+      - name: Read Package.json
+        id: set_package
+        run: |
+          content=`cat ./package.json`
+          # the following lines are only required for multi line json
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          # end of optional handling for multi line json
+          echo "::set-output name=packageJson::$content"
+      - name: Create Hash File
+        id: set_dependencies_hash
+        run: |
+          DEPS = fromJson(steps.set_package.outputs.packageJson).dependencies >> hash.json 
+          DEV_DEPS = fromJson(steps.set_package.outputs.packageJson).dependencies >> hash.json
+          cat hash.json
+      - name: Cache dependencies
+        uses: actions/cache@v2
         with:
           path: ./node_modules
-          key: ${{ github.sha }}
+          key: node-modules-${{ hashFiles('hash.json') }}
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
