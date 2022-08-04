@@ -1,3 +1,5 @@
+name: Install NPM Dependencies
+
 on:
   workflow_call:
   workflow_dispatch:
@@ -26,8 +28,8 @@ jobs:
       - name: Create Hash File
         id: set_dependencies_hash
         run: |
-          DEPS = fromJson(steps.set_package.outputs.packageJson).dependencies >> hash.json 
-          DEV_DEPS = fromJson(steps.set_package.outputs.packageJson).dependencies >> hash.json
+          fromJson(steps.set_package.outputs.packageJson).dependencies >> hash.json 
+          fromJson(steps.set_package.outputs.packageJson).dependencies >> hash.json
           cat hash.json
       - name: Cache dependencies
         uses: actions/cache@v2
