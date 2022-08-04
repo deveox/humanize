@@ -1,4 +1,5 @@
-import { floatPrefixes, formatInt, getString, intPrefixes, NumberFormatType, pluralize, toNumber, _formatInt } from '../src/numbers'
+import { NumberFormatType } from './../src/index.d';
+import { floatPrefixes, formatInt, getString, intPrefixes, pluralize, toNumber, _formatInt } from '../src/numbers'
 
 describe('pluralize', () => {
   it('should return plural form if n !== 1', () => {
@@ -46,6 +47,7 @@ describe('getString', () => {
   it('should return proper value if type is not set', () => {
     for (const k in prefixes) {
       expect(getString(1, '' as NumberFormatType, k, prefixes)).toStrictEqual(`1 ${k}`)
+
     }
   })
 })
