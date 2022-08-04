@@ -1,0 +1,56 @@
+{
+  "name": "@deveox/humanize",
+  "version": "0.1.0",
+  "description": "Formats number, dates and file sizes as human readable strings",
+  "main": "./dist/@deveox/humanize.cjs",
+  "module": "./dist/@deveox/humanize.mjs",
+  "exports": {
+    ".": {
+      "require": "./dist/@deveox/humanize.cjs",
+      "import": "./dist/@deveox/humanize.mjs",
+      "types": "./dist/@deveox/index.d.ts"
+    }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deveox/humanize.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deveox/humanize/issues"
+  },
+  "homepage": "https://github.com/deveox/humanize#readme",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc && vite build && dts-bundle-generator --config ./dts-bundle-generator.config.ts",
+    "test": "jest --runInBand",
+    "test:coverage": "jest --runInBand --coverage",
+    "lint": "eslint . --ext .ts"
+  },
+  "devDependencies": {
+    "@types/jest": "^28.1.6",
+    "@types/jsdom": "^20.0.0",
+    "@types/node": "^18.6.3",
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/parser": "^5.32.0",
+    "@vitejs/plugin-legacy": "^2.0.0",
+    "dts-bundle-generator": "^6.12.0",
+    "eslint": "^8.21.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^28.1.3",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "ts-jest": "^28.0.7",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.4"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.4"
+  }
+}
