@@ -1,0 +1,19 @@
+on:
+  workflow_call:
+ 
+jobs:
+  install-dependencies:
+    name: Install Dependencies
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 18
+      - run: npm ci
+      - uses: actions/cache@v2
+        id: restore-dependencies
+        with:
+          path: ./node_modules
+          key: ${{ github.sha }}
