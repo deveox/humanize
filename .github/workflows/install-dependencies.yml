@@ -28,8 +28,8 @@ jobs:
       - name: Create Hash File
         id: set_dependencies_hash
         run: |
-          ${{fromJson(steps.set_package.outputs.packageJson).dependencies}} >> hash.json 
-          ${{fromJson(steps.set_package.outputs.packageJson).dependencies}} >> hash.json
+          echo ${{fromJson(steps.set_package.outputs.packageJson).dependencies}} >> hash.json 
+          echo ${{fromJson(steps.set_package.outputs.packageJson).devDendencies}} >> hash.json
           cat hash.json
       - name: Cache dependencies
         uses: actions/cache@v2
