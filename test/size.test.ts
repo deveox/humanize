@@ -18,7 +18,11 @@ describe('formatSize', () => {
   it('should throw an error if second arg is not valid unit', () => {
     expect(() => formatSize(0, 'bb' as ByteUnit)).toThrow(ERR_INVALID_UNIT)
   })
-  it('checking big values', () => {
-    expect(formatSize()).toEqual('1 PTB')
+  it('should process big numbers', () => {
+    expect(formatSize(1000000000000000000)).toEqual('888 PTB')
+  })
+  it('should process floats', () => {
+    expect(formatSize(1024.347)).toEqual('1 KB')
+    expect(formatSize(1023.555)).toEqual('1 KB')
   })
 })
