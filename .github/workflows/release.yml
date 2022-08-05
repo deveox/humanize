@@ -5,7 +5,7 @@ on:
     branches:
       - main
     tags-ignore:
-      - "v*"
+      - "**"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,9 +23,8 @@ jobs:
       - run: echo ${{ steps.calc_version.outputs.new_version }}
       - name: Update version
         run: |
-          echo package.json
-          jq '.version="${{steps.calc_version.outputs.new_version }}"' package.json > package.json
-          echo package.json
+          TEST = jq '.version="${{steps.calc_version.outputs.new_version }}"' package.json
+          echo TEST
       - run: git status
       - name: Commit and tag files
         run: |
