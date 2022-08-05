@@ -22,14 +22,14 @@ runs:
       shell: bash
       id: set_dependencies_hash
       run: |
-        echo ${{fromJson(steps.set_package.outputs.packageJson).dependencies}} >> hash.json 
-        echo ${{fromJson(steps.set_package.outputs.packageJson).devDendencies}} >> hash.json
+        echo ${{fromJson(steps.set_package.outputs.packageJson).dependencies}} >> .hash.json 
+        echo ${{fromJson(steps.set_package.outputs.packageJson).devDendencies}} >> .hash.json
     - name: Cache dependencies
       id: cache
       uses: actions/cache@v3
       with:
         path: ./node_modules
-        key: node-modules-${{ hashFiles('hash.json') }}
+        key: node-modules-${{ hashFiles('.hash.json') }}
 
     - if: steps.cache.outputs.cache-hit != 'true'
       name: Install NPM dependencies
