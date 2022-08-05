@@ -3,8 +3,10 @@ name: Release
 on:
   push:
     # For some reason this disables triggering on tags push
-    branches:
-      - main
+    # branches:
+    #   - main
+    tags-ignore:
+      - "**"
 jobs:
   build:
     runs-on: ubuntu-latest
