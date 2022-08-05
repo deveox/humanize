@@ -1,3 +1,11 @@
+### [0.1.41](https://github.com/deveox/humanize/compare/v0.1.40...v0.1.41) (2022-08-05)
+
+
+### Documentation
+
+* **Readme:** update readme ([a36770c](https://github.com/deveox/humanize/commit/a36770c821acb8c54c8abfac293339ad60eb7db6))
+
+
 ### [0.1.40](https://github.com/deveox/humanize/compare/v0.1.39...v0.1.40) (2022-08-05)
 
 
