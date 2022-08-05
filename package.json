@@ -1,6 +1,6 @@
 {
   "name": "@deveox/humanize",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "description": "Formats number, dates and file sizes as human readable strings",
   "main": "./dist/@deveox/humanize.cjs",
   "module": "./dist/@deveox/humanize.mjs",
