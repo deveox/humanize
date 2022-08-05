@@ -23,4 +23,4 @@ jobs:
       - uses: pocket-apps/action-update-version@v1
         with:
           files: "package.json"
-          repo-token: ${{ secrets.ACCESS_TOKEN }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
