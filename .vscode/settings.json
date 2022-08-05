@@ -1,5 +1,6 @@
 {
   "conventionalCommits.scopes": [
-    "Github Actions"
+    "Github Actions",
+    "Readme"
   ]
 }
