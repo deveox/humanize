@@ -26,12 +26,12 @@ jobs:
           echo package.json
       - name: Update Changelog
         run: |
-          echo ${{steps.calc_version.outputs.changelog}} | cat - CHANGELOD.MD > tmp && mv tmp CHANGELOG.md
+          echo "${{steps.calc_version.outputs.changelog}}"" | cat - CHANGELOD.MD > tmp && mv tmp CHANGELOG.md
       - name: Commit and tag files
         run: |
           git config --local user.email "github-actions-bot@noreply.github.com"
           git config --local user.name "github-actions-bot"
-          git commit -m "[skip ci] update package.json to ${{steps.calc_version.outputs.new_version}}" -a
+          git commit -m "[skip ci] release ${{steps.calc_version.outputs.new_tag}}" -a
           git tag ${{steps.calc_version.outputs.new_tag}}
       - name: Push changes
         uses: ad-m/github-push-action@master
