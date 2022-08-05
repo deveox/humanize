@@ -15,12 +15,13 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - run: echo ${{ steps.tag_version.outputs.new_version }}
+      - name: Update version
+        run: |
+          jq '.version="${{steps.tag_version.outputs.new_version }}"' package.json
+          echo package.json
+          << package.json
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
-      - uses: pocket-apps/action-update-version@v1
-        with:
-          files: "package.json"
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
