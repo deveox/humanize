@@ -57,5 +57,14 @@
   },
   "dependencies": {
     "dayjs": "^1.11.4"
-  }
+  },
+  "peerDependencies": {
+    "typescript": ">=4.4.4"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
+  "types": "dist/humanize.d.ts"
 }
