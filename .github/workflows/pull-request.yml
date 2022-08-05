@@ -1,17 +1,18 @@
-name: "Build"
+name: "Pull Request Check"
 
 on:
   workflow_dispatch:
   workflow_call:
 
 jobs:
-  test:
+  pr-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/test
-  build:
-    needs: test
+        with:
+          coverage: "true"
+  pr-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
