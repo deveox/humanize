@@ -2,7 +2,8 @@ name: Release
 
 on:
   push:
-    branches: [main]
+    tags-ignore:
+      - ci
 
 jobs:
   build:
@@ -10,18 +11,31 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Bump version and push tag
+        id: calc_version
+        uses: mathieudutour/github-tag-action@v6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          dry_run: "true"
+      - run: echo ${{ steps.calc_version.outputs.new_version }}
+      - name: Update version
+        run: jq '.version="${{steps.calc_version.outputs.new_version }}"' package.json
+      - name: Bump version and push tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - run: echo ${{ steps.tag_version.outputs.new_version }}
-      - name: Update version
-        run: |
-          jq '.version="${{steps.tag_version.outputs.new_version }}"' package.json
-          echo package.json
-          << package.json
-      - name: Create a GitHub release
-        uses: ncipollo/release-action@v1
-        with:
-          tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: Release ${{ steps.tag_version.outputs.new_tag }}
+      # - name: Commit files
+      #   run: |
+      #       git config --local user.email "github-actions-bot@noreply.github.com"
+      #       git config --local user.name "github-actions-bot"
+      #       git commit -m "update package.json to ${{steps.tag_version.outputs.new_version}} changes" -a
+      #   - name: Push changes
+      #     uses: ad-m/github-push-action@master
+      #     with:
+      #       github_token: ${{ secrets.GITHUB_TOKEN }}
+      #       branch: ${{ github.ref }}
+      # - name: Create a GitHub release
+      #   uses: ncipollo/release-action@v1
+      #   with:
+      #     tag: ${{ steps.tag_version.outputs.new_tag }}
+      #     name: Release ${{ steps.tag_version.outputs.new_tag }}
