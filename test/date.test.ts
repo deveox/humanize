@@ -10,7 +10,6 @@ describe('formatDate', () => {
   })
   it('should return proper value for different formats', () => {
     expect(formatDate('1995-12-17', 'period')).toEqual('27 years ago')
-    expect(formatDate('December', 'period')).toEqual('27 years ago')
     expect(formatDate('1995-12-17', 'date')).toEqual('L')
     expect(formatDate('1995-12-17', 'date-period')).toEqual('L (27 years ago)')
     expect(formatDate('1995-12-17T03:24:00', 'time-period')).toEqual('L 03:24:00 (27 years ago)')
