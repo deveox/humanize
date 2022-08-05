@@ -43,9 +43,5 @@ jobs:
         with:
           tag: ${{ steps.calc_version.outputs.new_tag }}
           name: Release ${{ steps.calc_version.outputs.new_tag }}
-  #  - name: Commit files
-  #       run: |
-  #           git config --local user.email "github-actions-bot@noreply.github.com"
-  #           git config --local user.name "github-actions-bot"
-  #           git commit -m "update package.json to ${{steps.tag_version.outputs.new_version}} changes" -a
-  #
+          body: ${{steps.calc_version.outputs.changelog}}
+          token: ${{ secrets.ACCESS_TOKEN }}
