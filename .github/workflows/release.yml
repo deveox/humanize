@@ -26,7 +26,7 @@ jobs:
           echo package.json
       - name: Update Changelog
         run: |
-          echo "${{steps.calc_version.outputs.changelog}}" | cat CHANGELOG.MD > tmp && mv tmp CHANGELOG.md
+          echo "${{steps.calc_version.outputs.changelog}}" | cat CHANGELOG.md > tmp && mv tmp CHANGELOG.md
       - name: Commit and tag files
         run: |
           git config --local user.email "github-actions-bot@noreply.github.com"
