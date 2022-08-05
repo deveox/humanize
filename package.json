@@ -8,7 +8,7 @@
     ".": {
       "require": "./dist/@deveox/humanize.cjs",
       "import": "./dist/@deveox/humanize.mjs",
-      "types": "./dist/@deveox/index.d.ts"
+      "types": "./dist/@deveox/humanize.d.ts"
     }
   },
   "directories": {
@@ -18,7 +18,10 @@
     "type": "git",
     "url": "git+https://github.com/deveox/humanize.git"
   },
-  "author": "",
+  "author": "David Yunevich",
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/deveox/humanize/issues"
