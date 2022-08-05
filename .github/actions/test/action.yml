@@ -16,7 +16,6 @@ runs:
       run: npm run test:coverage
       shell: bash
     - if: inputs.coverage == 'true'
-      shell: bash
       uses: codecov/codecov-action@v3.1.0
       with:
         files: ./coverage/clover.xml
