@@ -2,8 +2,9 @@ name: Release
 
 on:
   push:
-    tags-ignore:
-      - "**"
+    # For some reason this disables triggering on tags push
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
