@@ -1,8 +1,21 @@
 name: "Run Tests"
 description: "npm run test"
+inputs:
+  coverage:
+    description: "Number of Octocats"
+    required: false
+    default: "false"
 runs:
   using: "composite"
   steps:
     - uses: ./.github/actions/install-dependencies
-    - run: npm run test
+    - if: inputs.coverage === "false"
+      run: npm run test
+      shell: bash
+    - if: inputs.coverage === "true"
+      run: |
+        npm run test:coverage
+        curl -Os https://uploader.codecov.io/latest/linux/codecov
+        chmod +x codecov
+        ./codecov
       shell: bash
