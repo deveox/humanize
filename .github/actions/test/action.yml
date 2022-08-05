@@ -17,5 +17,3 @@ runs:
       shell: bash
     - if: inputs.coverage == 'true'
       uses: codecov/codecov-action@v3.1.0
-      with:
-        files: ./coverage/clover.xml
