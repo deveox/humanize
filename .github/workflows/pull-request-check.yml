@@ -1,4 +1,4 @@
-name: On PUll Request Opened
+name: Pull Request Check
 
 on:
   workflow_dispatch:
