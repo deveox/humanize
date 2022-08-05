@@ -66,5 +66,5 @@
       "optional": true
     }
   },
-  "types": "dist/humanize.d.ts"
+  "types": "./dist/humanize.d.ts"
 }
