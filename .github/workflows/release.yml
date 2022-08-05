@@ -21,7 +21,7 @@ jobs:
       - name: Update version
         run: |
           echo package.json
-          jq '.version="${{steps.calc_version.outputs.new_version }}"' package.json
+          jq '.version="${{steps.calc_version.outputs.new_version }}"' package.json > package.json
           echo package.json
       - run: git status
       - name: Commit files
