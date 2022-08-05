@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+          fetch-depth: 0
       - name: Bump version and push tag
         id: calc_version
         uses: mathieudutour/github-tag-action@v6.0
