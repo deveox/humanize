@@ -5,14 +5,14 @@ on:
   workflow_call:
 
 jobs:
-  test:
+  pr-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/test
         with:
           coverage: "true"
-  build:
+  pr-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
