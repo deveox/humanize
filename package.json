@@ -9,7 +9,9 @@
       "require": "./dist/@deveox/humanize.cjs",
       "import": "./dist/@deveox/humanize.mjs",
       "types": "./dist/@deveox/humanize.d.ts"
-    }
+    },
+    "./package.json": "./package.json",
+    "./dist/*": "./dist/*"
   },
   "directories": {
     "test": "test"
