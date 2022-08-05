@@ -9,10 +9,10 @@ runs:
   using: "composite"
   steps:
     - uses: ./.github/actions/install-dependencies
-    - if: inputs.coverage = "false"
+    - if: inputs.coverage == "false"
       run: npm run test
       shell: bash
-    - if: inputs.coverage = "true"
+    - if: inputs.coverage == "true"
       run: |
         npm run test:coverage
         curl -Os https://uploader.codecov.io/latest/linux/codecov
