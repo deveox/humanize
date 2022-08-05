@@ -1,3 +1,6 @@
+### [0.1.47](https://github.com/deveox/humanize/compare/v0.1.46...v0.1.47) (2022-08-05)
+
+
 ### [0.1.46](https://github.com/deveox/humanize/compare/v0.1.45...v0.1.46) (2022-08-05)
 
 
