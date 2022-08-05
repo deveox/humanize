@@ -23,8 +23,9 @@ jobs:
       - run: echo ${{ steps.calc_version.outputs.new_version }}
       - name: Update version
         run: |
-          $TEST = jq '.version="${{steps.calc_version.outputs.new_version }}"' package.json
-          echo TEST
+          echo package.json 
+          jq '.version="${{steps.calc_version.outputs.new_version }}"' package.json > tmp && mv tmp package.json
+          echo package.json
       - run: git status
       - name: Commit and tag files
         run: |
