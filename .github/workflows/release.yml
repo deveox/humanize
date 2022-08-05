@@ -24,7 +24,9 @@ jobs:
           echo package.json 
           jq '.version="${{steps.calc_version.outputs.new_version }}"' package.json > tmp && mv tmp package.json
           echo package.json
-      - run: git status
+      - name: Update Changelog
+        run: |
+          echo ${{steps.calc_version.outputs.changelog}} | cat - CHANGELOD.MD > tmp && mv tmp CHANGELOG.md
       - name: Commit and tag files
         run: |
           git config --local user.email "github-actions-bot@noreply.github.com"
