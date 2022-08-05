@@ -12,6 +12,7 @@ jobs:
           node-version: "18"
           registry-url: "https://registry.npmjs.org"
       - uses: ./.github/actions/install-dependencies
+      - run: npm run build
       - run: npm publish --dry-run
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
