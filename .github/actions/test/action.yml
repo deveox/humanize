@@ -13,9 +13,10 @@ runs:
       run: npm run test
       shell: bash
     - if: inputs.coverage == 'true'
-      run: |
-        npm run test:coverage
-        curl -Os https://uploader.codecov.io/latest/linux/codecov
-        chmod +x codecov
-        ./codecov
+      run: npm run test:coverage
       shell: bash
+    - if: inputs.coverage == 'true'
+      shell: bash
+      uses: codecov/codecov-action@v3.1.0
+      with:
+        files: ./coverage/clover.xml
