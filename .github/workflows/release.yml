@@ -16,7 +16,11 @@ jobs:
           dry_run: "true"
       - run: echo ${{ steps.calc_version.outputs.new_version }}
       - name: Update version
-        run: jq '.version="${{steps.calc_version.outputs.new_version }}"' package.json
+        run: |
+          echo package.json
+          jq '.version="${{steps.calc_version.outputs.new_version }}"' package.json
+          echo package.json
+      - run: git status
       - name: Commit files
         run: |
           git config --local user.email "github-actions-bot@noreply.github.com"
