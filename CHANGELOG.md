@@ -1,3 +1,11 @@
+### [0.1.50](https://github.com/deveox/humanize/compare/v0.1.49...v0.1.50) (2022-08-06)
+
+
+### Build Systems
+
+* enhance build ([ef66c98](https://github.com/deveox/humanize/commit/ef66c9813e8f9865c60604f0b2de82b97b1c4ec2))
+
+
 ### [0.1.49](https://github.com/deveox/humanize/compare/v0.1.48...v0.1.49) (2022-08-05)
 
 
