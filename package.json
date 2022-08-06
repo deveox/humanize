@@ -31,7 +31,7 @@
   "homepage": "https://github.com/deveox/humanize#readme",
   "scripts": {
     "dev": "vite --host",
-    "build": "tsc && vite build && dts-bundle-generator --config ./dts-bundle-generator.config.ts",
+    "build": "tsc && vite build && dts-bundle-generator --config ./dts.config.ts",
     "test": "jest --runInBand",
     "test:coverage": "jest --runInBand --coverage",
     "lint": "eslint . --ext .ts"

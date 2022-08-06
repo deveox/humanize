@@ -1,25 +1,6 @@
 import path from "path";
 import { defineConfig } from "vite";
-import packageJson from "./package.json";
-
-const getPackageName = () => {
-  return packageJson.name;
-};
-
-const getPackageNameCamelCase = () => {
-  try {
-    return getPackageName().replace(/-./g, (char) => char[1].toUpperCase());
-  } catch (err) {
-    throw new Error("Name property in package.json is missing.");
-  }
-};
-
-const fileName = {
-  es: `${getPackageName()}.mjs`,
-  cjs: `${getPackageName()}.cjs`,
-  iife: `${getPackageName()}.iife.js`,
-};
-
+const tools = require('./tools.ts')
 module.exports = defineConfig({
   base: "./",
   build: {
@@ -27,9 +8,9 @@ module.exports = defineConfig({
     minify: true,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: getPackageNameCamelCase(),
+      name: tools.packageNameUpper,
       formats: ["es", "cjs", "iife"],
-      fileName: (format) => fileName[format],
+      fileName: (format) => tools.fileNames[format],
     },
     rollupOptions: {
       output: {
@@ -38,4 +19,3 @@ module.exports = defineConfig({
     },
   },
 });
-// 
